@@ -1,12 +1,12 @@
 /**
  * Variables Configuration
  * =======================
- * 
+ *
  * CENTRAL PLACE TO DEFINE ALL SHARED VARIABLES
- * 
+ *
  * This file defines all variables that can be shared across sections.
  * AI agents should read this file to understand what variables are available.
- * 
+ *
  * USAGE:
  * 1. Define variables here with their default values and metadata
  * 2. Use them in any section with: const x = useVar('variableName', defaultValue)
@@ -55,106 +55,168 @@ export interface VariableDefinition {
  * =====================================================
  * 🎯 DEFINE YOUR VARIABLES HERE
  * =====================================================
- * 
- * SUPPORTED TYPES:
- * 
- * 1. NUMBER (slider):
- *    { defaultValue: 5, type: 'number', min: 0, max: 10, step: 1 }
- * 
- * 2. TEXT (free text):
- *    { defaultValue: 'Hello', type: 'text', placeholder: 'Enter text...' }
- * 
- * 3. SELECT (dropdown):
- *    { defaultValue: 'sine', type: 'select', options: ['sine', 'cosine', 'tangent'] }
- * 
- * 4. BOOLEAN (toggle):
- *    { defaultValue: true, type: 'boolean' }
- * 
- * 5. ARRAY (list of numbers):
- *    { defaultValue: [1, 2, 3], type: 'array' }
- * 
- * 6. OBJECT (complex data):
- *    { defaultValue: { x: 5, y: 10 }, type: 'object', schema: '{ x: number, y: number }' }
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
-    // ========================================
-    // ADD YOUR VARIABLES HERE
-    // ========================================
-
-    // Uncomment and modify these examples for your lesson:
-
-    /*
     // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
+    // SECTION 1: Partial Derivatives
     // ─────────────────────────────────────────
-    myValue: {
-        defaultValue: 5,
+    partialX: {
+        defaultValue: 1,
         type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
+        label: 'x-coordinate',
+        description: 'The x-coordinate for exploring partial derivatives',
+        min: -3,
+        max: 3,
+        step: 0.1,
+        color: '#62D0AD',
+    },
+    partialY: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'y-coordinate',
+        description: 'The y-coordinate for exploring partial derivatives',
+        min: -3,
+        max: 3,
+        step: 0.1,
+        color: '#8E90F5',
+    },
+
+    // ─────────────────────────────────────────
+    // SECTION 2: The Counterexample
+    // ─────────────────────────────────────────
+    approachAngle: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Approach Angle',
+        description: 'The angle of approach to the origin (in degrees)',
         min: 0,
-        max: 10,
-        step: 0.5,
+        max: 360,
+        step: 5,
+        color: '#F7B23B',
+    },
+    approachDistance: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Approach Distance',
+        description: 'Distance from origin along the approach path',
+        min: 0.1,
+        max: 3,
+        step: 0.1,
+        color: '#AC8BF9',
     },
 
     // ─────────────────────────────────────────
-    // TEXT - Free text input
+    // SECTION 3: True Differentiability
     // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
-        type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+    tangentPlaneX: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Point x',
+        description: 'x-coordinate for tangent plane visualization',
+        min: -2,
+        max: 2,
+        step: 0.1,
+        color: '#62D0AD',
     },
-
-    // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
-    // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
-        type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+    tangentPlaneY: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Point y',
+        description: 'y-coordinate for tangent plane visualization',
+        min: -2,
+        max: 2,
+        step: 0.1,
+        color: '#8E90F5',
     },
-
-    // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
-    // ─────────────────────────────────────────
-    showHints: {
+    showTangentPlane: {
         defaultValue: true,
         type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+        label: 'Show Tangent Plane',
+        description: 'Toggle visibility of the tangent plane',
     },
 
     // ─────────────────────────────────────────
-    // ARRAY - List of numbers
+    // SECTION 4: Directional Derivatives
     // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
+    directionAngle: {
+        defaultValue: 45,
+        type: 'number',
+        label: 'Direction Angle',
+        description: 'The angle of the direction vector (in degrees)',
+        min: 0,
+        max: 360,
+        step: 5,
+        color: '#F8A0CD',
     },
 
     // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
+    // SECTION 5: Continuous Partials
     // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
+    continuityRadius: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Neighborhood Radius',
+        description: 'Radius of the neighborhood for checking continuity',
+        min: 0.1,
+        max: 2,
+        step: 0.1,
+        color: '#62CCF9',
     },
-    */
+
+    // ─────────────────────────────────────────
+    // LINKED HIGHLIGHTS
+    // ─────────────────────────────────────────
+    activeHighlight: {
+        defaultValue: '',
+        type: 'linkedHighlight',
+        label: 'Active Highlight',
+        description: 'Currently highlighted element',
+    },
+    formulaHighlight: {
+        defaultValue: '',
+        type: 'linkedHighlight',
+        label: 'Formula Highlight',
+        description: 'Currently highlighted formula term',
+    },
+
+    // ─────────────────────────────────────────
+    // ASSESSMENT VARIABLES
+    // ─────────────────────────────────────────
+    answer_partial_meaning: {
+        defaultValue: '',
+        type: 'text',
+        placeholder: '???',
+        correctAnswer: 'one',
+        color: '#62D0AD',
+    },
+    answer_counterexample_continuous: {
+        defaultValue: '',
+        type: 'text',
+        placeholder: '???',
+        correctAnswer: 'no',
+        color: '#F7B23B',
+    },
+    answer_differentiable_condition: {
+        defaultValue: '',
+        type: 'text',
+        placeholder: '???',
+        correctAnswer: 'linear',
+        color: '#8E90F5',
+    },
+    answer_gradient_formula: {
+        defaultValue: '',
+        type: 'text',
+        placeholder: '???',
+        correctAnswer: 'gradient',
+        color: '#F8A0CD',
+    },
+    answer_safety_theorem: {
+        defaultValue: '',
+        type: 'text',
+        placeholder: '???',
+        correctAnswer: 'continuous',
+        color: '#62CCF9',
+    },
 };
 
 /**
